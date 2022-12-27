@@ -15,6 +15,6 @@ public class DemoApplication {
 
 	@RequestMapping("/")
 	String sayHello() {
-		return "This is East Region!";
+		return "Azure East Region!";
 	}
 }
