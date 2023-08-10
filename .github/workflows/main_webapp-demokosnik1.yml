@@ -38,26 +38,26 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: java-app
+  - name: Install Azure CLI
+    run: |
+      curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+    if: runner.os == 'Linux'
+       
+  - name: Download artifact from build job
+    uses: actions/download-artifact@v2
+    with:
+      name: java-app
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-     
-     - name: Install Azure CLI
-       run: |
-         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-       if: runner.os == 'Linux'
-   
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'webapp-demokosnik1'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.GITHUB_PROVIDER_AUTHENTICATION_SECRET_2b31aa67fc43fa34c505bc67d2850d7a6324211b }}
-          package: '*.jar'
+  - name: Azure Login
+    uses: azure/login@v1
+    with:
+      creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+  - name: Deploy to Azure Web App
+    id: deploy-to-webapp
+    uses: azure/webapps-deploy@v2
+    with:
+      app-name: 'webapp-demokosnik1'
+      slot-name: 'Production'
+      publish-profile: ${{ secrets.GITHUB_PROVIDER_AUTHENTICATION_SECRET_2b31aa67fc43fa34c505bc67d2850d7a6324211b }}
+      package: '*.jar'
