@@ -47,7 +47,12 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
+     
+     - name: Install Azure CLI
+       run: |
+         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+       if: runner.os == 'Linux'
+   
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
