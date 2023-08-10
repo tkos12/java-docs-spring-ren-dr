@@ -15,6 +15,6 @@ public class DemoApplication {
 
 	@RequestMapping("/")
 	String sayHello() {
-		return "Azure East Region - Demo for Coke!";
+		return "Azure East Region!";
 	}
 }
