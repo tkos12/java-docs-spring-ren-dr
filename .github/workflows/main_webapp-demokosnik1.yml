@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'webapp-demokosnik1'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_64A754B509A34DE09C4AA3F189911A32 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2b31aa67fc43fa34c505bc67d2850d7a6324211b }}
           package: '*.jar'
